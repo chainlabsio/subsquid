@@ -11,9 +11,7 @@ processor.run(new TypeormDatabase({ supportHotBlocks: true }), async (ctx) => {
             transfers.push(
                 new Transfer({
                     id: log.id,
-                    gasUsed: block.transactions.find(
-                        (tx) => tx.hash === log.transaction?.hash
-                    )?.gasUsed,
+                    gasUsed: log.transaction!.gasUsed,
                     from,
                     to,
                     value,

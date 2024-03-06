@@ -28,8 +28,6 @@ export const processor = new EvmBatchProcessor()
     .setFinalityConfirmation(75)
     .setFields({
         transaction: {
-            from: true,
-            value: true,
             hash: true,
             gasUsed: true,
         },
@@ -43,6 +41,7 @@ export const processor = new EvmBatchProcessor()
     .addLog({
         address: ["0xdAC17F958D2ee523a2206206994597C13D831ec7"],
         topic0: [usdtAbi.events.Transfer.topic],
+        transaction: true
     });
 
 export type Fields = EvmBatchProcessorFields<typeof processor>;
