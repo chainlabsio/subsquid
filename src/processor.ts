@@ -9,6 +9,8 @@ import {
     Transaction as _Transaction,
 } from "@subsquid/evm-processor";
 
+import * as usdtAbi from "./abi/0xdAC17F958D2ee523a2206206994597C13D831ec7";
+
 export const processor = new EvmBatchProcessor()
     // Lookup archive by the network name in Subsquid registry
     // See https://docs.subsquid.io/evm-indexing/supported-networks/
@@ -38,6 +40,10 @@ export const processor = new EvmBatchProcessor()
     // .addTransaction({
     //     to: ["0x0000000000000000000000000000000000000000"],
     // });
+    .addLog({
+        address: ["0xdAC17F958D2ee523a2206206994597C13D831ec7"],
+        topic0: [usdtAbi.events.Transfer.topic],
+    });
 
 export type Fields = EvmBatchProcessorFields<typeof processor>;
 export type Block = BlockHeader<Fields>;

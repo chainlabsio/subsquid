@@ -1,24 +1,23 @@
 import { TypeormDatabase } from "@subsquid/typeorm-store";
 import { Transfer } from "./model";
 import { processor } from "./processor";
+import * as usdtAbi from "./abi/0xdAC17F958D2ee523a2206206994597C13D831ec7";
 
 processor.run(new TypeormDatabase({ supportHotBlocks: true }), async (ctx) => {
     const transfers: Transfer[] = [];
-    for (let c of ctx.blocks) {
-        for (let tx of c.transactions) {
-            // decode and normalize the tx data
+    for (let block of ctx.blocks) {
+        for (let log of block.logs) {
+            let { from, to, value } = usdtAbi.events.Transfer.decode(log);
             transfers.push(
                 new Transfer({
-                    id: tx.hash,
-                    from: tx.from,
-                    to: tx.to,
-                    value: tx.value,
-                    gasUsed: tx.gasUsed,
+                    id: log.id,
+                    gasUsed: log.transaction?.gasUsed,
+                    from,
+                    to,
+                    value,
                 })
             );
         }
     }
-
-    // upsert batches of entities with batch-optimized ctx.store.save
-    await ctx.store.upsert(transfers);
+    await ctx.store.insert(transfers);
 });
