@@ -25,17 +25,20 @@ export const processor = new EvmBatchProcessor()
     rateLimit: 10,
   })
   .setFinalityConfirmation(75)
+  .setFields({
+      transaction: {
+        // from: true,
+        // to: true,
+        // value: true,
+        hash: true,
+        gasUsed: true,
+        // gasPrice: true,
+      },
+  })
   .addLog({
     address: ["0xdAC17F958D2ee523a2206206994597C13D831ec7"],
     topic0: [usdtAbi.events.Transfer.topic],
   });
-// .setFields({
-//     transaction: {
-//         from: true,
-//         value: true,
-//         hash: true,
-//     },
-// })
 // .setBlockRange({
 //     from: 0,
 // })

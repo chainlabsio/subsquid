@@ -34,6 +34,10 @@ processor.run(new TypeormDatabase({supportHotBlocks: true}), async ctx => {
     const transfers: Transfer[] = []
     for (let block of ctx.blocks) {
       for (let log of block.logs) {
+        // hints from xin:
+        // in this log, a transactionHash should be available
+        // meantime, you can find tx in ctx.transactions
+        // after locating correct tx, gasUsed is likely what you want
         let {from, to, value} = usdtAbi.events.Transfer.decode(log)
         transfers.push(new Transfer({
           id: log.id,
