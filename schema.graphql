@@ -1,0 +1,14 @@
+type Burn @entity {
+  id: ID!
+  block: Int!
+  address: String! @index
+  value: BigInt!
+  txHash: String!
+}
+
+type Transfer @entity {
+  id: ID!
+  from: String! @index
+  to: String! @index
+  value: BigInt!
+}
