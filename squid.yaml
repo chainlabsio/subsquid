@@ -1,17 +1,30 @@
 manifestVersion: subsquid.io/v0.1
-name: subsquid
+name: subsquid-multichain
 version: 1
-description: 'The very first evm squid from manifest  '
+description: A squid that indexes USDC transfers on ETH and BSC
 build: 
 deploy:
   addons:
     postgres: 
   processor:
-    cmd:
-      - sqd
-      - process:prod
-    env:
-      RPC_ENDPOINT: ${{ secrets.RPC_ENDPOINT }}
+    - name: eth-processor
+      cmd:
+        - sqd
+        - process:prod:eth
+      env:
+        RPC_ENDPOINT_ETH: ${{ secrets.RPC_ENDPOINT_ETH }}
+    - name: bsc-processor
+      cmd:
+        - sqd
+        - process:prod:bsc
+      env:
+        RPC_ENDPOINT_BSC: ${{ secrets.RPC_ENDPOINT_BSC }}
+    - name: polygon-processor
+      cmd:
+        - sqd
+        - process:prod:polygon
+      env:
+        RPC_ENDPOINT_POLYGON: ${{ secrets.RPC_ENDPOINT_POLYGON }}
   api:
     cmd:
       - sqd
