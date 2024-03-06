@@ -1,8 +1,7 @@
-import {TypeormDatabase} from '@subsquid/typeorm-store'
-import {Burn, Transfer} from './model'
+import { TypeormDatabase } from "@subsquid/typeorm-store";
+import { Transfer } from "./model";
 import * as usdtAbi from "./abi/0xdAC17F958D2ee523a2206206994597C13D831ec7";
-import {processor} from './processor'
-
+import { processor } from "./processor";
 
 // processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
 //     const burns: Burn[] = []
@@ -41,9 +40,12 @@ processor.run(new TypeormDatabase({supportHotBlocks: true}), async ctx => {
         let {from, to, value} = usdtAbi.events.Transfer.decode(log)
         transfers.push(new Transfer({
           id: log.id,
-          from, to, value
-        }))
-      }
+          from,
+          to,
+          value,
+        })
+      );
     }
-    await ctx.store.insert(transfers)
-  })
+  }
+  await ctx.store.insert(transfers);
+});
