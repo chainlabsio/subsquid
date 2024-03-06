@@ -17,6 +17,9 @@ export const BSC_USDC_ADDRESS =
 export const BSC_USDT_ADDRESS =
     "0x55d398326f99059fF775485246999027B3197955".toLowerCase();
 
+export const BSC_SHIB_ADDRESS =
+    "0x2859e4544c4bb03966803b044a93563bd2d0dd4d".toLowerCase();
+
 export const processor = new EvmBatchProcessor()
     // Lookup archive by the network name in Subsquid registry
     // See https://docs.subsquid.io/evm-indexing/supported-networks/
@@ -39,7 +42,7 @@ export const processor = new EvmBatchProcessor()
         },
     })
     .addLog({
-        address: [BSC_USDC_ADDRESS, BSC_USDT_ADDRESS],
+        address: [BSC_USDC_ADDRESS, BSC_USDT_ADDRESS, BSC_SHIB_ADDRESS],
         topic0: [erc20abi.events.Transfer.topic],
         transaction: true,
     });

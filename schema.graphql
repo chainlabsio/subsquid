@@ -1,6 +1,7 @@
 enum Coin {
     USDC
     USDT
+    SHIB
 }
 
 enum Network {

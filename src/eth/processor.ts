@@ -17,6 +17,9 @@ export const ETH_USDC_ADDRESS =
 export const ETH_USDT_ADDRESS =
     "0xdAC17F958D2ee523a2206206994597C13D831ec7".toLowerCase();
 
+export const ETH_SHIB_ADDRESS =
+    "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce".toLowerCase();
+
 export const processor = new EvmBatchProcessor()
     // Lookup archive by the network name in Subsquid registry
     // See https://docs.subsquid.io/evm-indexing/supported-networks/
@@ -39,7 +42,7 @@ export const processor = new EvmBatchProcessor()
         },
     })
     .addLog({
-        address: [ETH_USDC_ADDRESS, ETH_USDT_ADDRESS],
+        address: [ETH_USDC_ADDRESS, ETH_USDT_ADDRESS, ETH_SHIB_ADDRESS],
         topic0: [erc20abi.events.Transfer.topic],
         transaction: true,
     });
