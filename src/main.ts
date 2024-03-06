@@ -11,10 +11,10 @@ processor.run(new TypeormDatabase({ supportHotBlocks: true }), async (ctx) => {
             transfers.push(
                 new Transfer({
                     id: log.id,
-                    gasUsed: log.transaction?.gasUsed,
                     from,
                     to,
                     value,
+                    effectiveGasPrice: log.transaction!.effectiveGasPrice,
                 })
             );
         }

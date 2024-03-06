@@ -26,22 +26,19 @@ export const processor = new EvmBatchProcessor()
         rateLimit: 10,
     })
     .setFinalityConfirmation(75)
+    .addLog({
+        address: ["0xdAC17F958D2ee523a2206206994597C13D831ec7"],
+        topic0: [usdtAbi.events.Transfer.topic],
+        transaction: true,
+    })
     .setFields({
         transaction: {
             hash: true,
-            gasUsed: true,
+            effectiveGasPrice: true,
         },
     })
     .setBlockRange({
         from: 0,
-    })
-    // .addTransaction({
-    //     to: ["0x0000000000000000000000000000000000000000"],
-    // });
-    .addLog({
-        address: ["0xdAC17F958D2ee523a2206206994597C13D831ec7"],
-        topic0: [usdtAbi.events.Transfer.topic],
-        transaction: true
     });
 
 export type Fields = EvmBatchProcessorFields<typeof processor>;

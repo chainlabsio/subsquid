@@ -3,5 +3,5 @@ type Transfer @entity {
     from: String! @index
     to: String! @index
     value: BigInt!
-    gasUsed: BigInt
+    effectiveGasPrice: BigInt!
 }
