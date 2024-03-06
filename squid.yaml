@@ -19,6 +19,12 @@ deploy:
         - process:prod:bsc
       env:
         RPC_ENDPOINT_BSC: ${{ secrets.RPC_ENDPOINT_BSC }}
+    - name: polygon-processor
+      cmd:
+        - sqd
+        - process:prod:polygon
+      env:
+        RPC_ENDPOINT_POLYGON: ${{ secrets.RPC_ENDPOINT_POLYGON }}
   api:
     cmd:
       - sqd
