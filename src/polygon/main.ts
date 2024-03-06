@@ -27,7 +27,7 @@ processor.run(
                 transfers.push(
                     new Transfer({
                         id: log.id,
-                        network: Network.Ethereum,
+                        network: Network.Polygon,
                         block: c.header.height,
                         timestamp: new Date(c.header.timestamp),
                         from,

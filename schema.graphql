@@ -7,6 +7,7 @@ enum Coin {
 enum Network {
     Ethereum
     Binance
+    Polygon
 }
 
 type Transfer @entity {
