@@ -35,9 +35,9 @@ export const processor = new EvmBatchProcessor()
     .setBlockRange({
         from: 0,
     })
-    .addTransaction({
-        to: ["0x0000000000000000000000000000000000000000"],
-    });
+    // .addTransaction({
+    //     to: ["0x0000000000000000000000000000000000000000"],
+    // });
 
 export type Fields = EvmBatchProcessorFields<typeof processor>;
 export type Block = BlockHeader<Fields>;
