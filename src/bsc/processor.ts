@@ -41,6 +41,7 @@ export const processor = new EvmBatchProcessor()
     .addLog({
         address: [BSC_USDC_ADDRESS, BSC_USDT_ADDRESS],
         topic0: [erc20abi.events.Transfer.topic],
+        transaction: true,
     });
 
 export type Fields = EvmBatchProcessorFields<typeof processor>;

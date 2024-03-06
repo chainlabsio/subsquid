@@ -1,7 +1,7 @@
 import { TypeormDatabase } from "@subsquid/typeorm-store";
-import { Coin, Transfer } from "../model";
+import { Coin, Network, Transfer } from "../model";
 import * as erc20abi from "../abi/erc20";
-import { processor, BSC_USDC_ADDRESS, BSC_USDT_ADDRESS } from "./processor";
+import { processor, BSC_USDC_ADDRESS } from "./processor";
 
 processor.run(
     new TypeormDatabase({
@@ -12,16 +12,11 @@ processor.run(
         const transfers: Transfer[] = [];
         for (let c of ctx.blocks) {
             for (let log of c.logs) {
-                if (
-                    log.address !== (BSC_USDC_ADDRESS || BSC_USDT_ADDRESS) ||
-                    log.topics[0] !== erc20abi.events.Transfer.topic
-                )
-                    continue;
                 let { from, to, value } = erc20abi.events.Transfer.decode(log);
                 transfers.push(
                     new Transfer({
                         id: log.id,
-                        network: "bsc",
+                        network: Network.Binance,
                         block: c.header.height,
                         timestamp: new Date(c.header.timestamp),
                         from,

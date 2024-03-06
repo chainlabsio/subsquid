@@ -1,5 +1,6 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_} from "typeorm"
 import * as marshal from "./marshal"
+import {Network} from "./_network"
 import {Coin} from "./_coin"
 
 @Entity_()
@@ -11,9 +12,8 @@ export class Transfer {
     @PrimaryColumn_()
     id!: string
 
-    @Index_()
-    @Column_("text", {nullable: false})
-    network!: string
+    @Column_("varchar", {length: 8, nullable: false})
+    network!: Network
 
     @Index_()
     @Column_("int4", {nullable: false})
