@@ -2,6 +2,7 @@ import { TypeormDatabase } from "@subsquid/typeorm-store";
 import { Coin, Transfer, Network } from "../model";
 import * as erc20abi from "../abi/erc20";
 import { processor, ETH_USDC_ADDRESS, ETH_SHIB_ADDRESS } from "./processor";
+import { ethers } from "ethers";
 
 processor.run(
     new TypeormDatabase({
@@ -37,7 +38,14 @@ processor.run(
                         to,
                         value,
                         txHash: log.transaction!.hash,
-                        effectiveGasPrice: log.transaction!.effectiveGasPrice,
+                        gasUsed: log.transaction!.gasUsed,
+                        gasPrice: log.transaction!.gasPrice,
+                        maxFeePerGas: log.transaction!.maxFeePerGas,
+                        maxPriorityFeePerGas:
+                            log.transaction!.maxPriorityFeePerGas,
+                        txFee: ethers.formatEther(
+                            log.transaction!.gasUsed * log.transaction!.gasPrice
+                        ),
                         coin,
                     })
                 );

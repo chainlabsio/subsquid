@@ -38,9 +38,21 @@ export class Transfer {
     @Column_("text", {nullable: false})
     txHash!: string
 
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
-    effectiveGasPrice!: bigint
+    @Column_("text", {nullable: false})
+    txFee!: string
 
     @Column_("varchar", {length: 4, nullable: false})
     coin!: Coin
+
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
+    gasUsed!: bigint
+
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
+    gasPrice!: bigint
+
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    maxFeePerGas!: bigint | undefined | null
+
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    maxPriorityFeePerGas!: bigint | undefined | null
 }

@@ -37,8 +37,11 @@ export const processor = new EvmBatchProcessor()
     .setFinalityConfirmation(75)
     .setFields({
         transaction: {
-            effectiveGasPrice: true,
             hash: true,
+            gasPrice: true,
+            gasUsed: true,
+            maxFeePerGas: true,
+            maxPriorityFeePerGas: true,
         },
     })
     .addLog({

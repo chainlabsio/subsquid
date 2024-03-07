@@ -19,6 +19,10 @@ type Transfer @entity {
     to: String! @index
     value: BigInt!
     txHash: String! @index
-    effectiveGasPrice: BigInt!
+    txFee:  String!
     coin: Coin!
+    gasUsed: BigInt!
+    gasPrice: BigInt!
+    maxFeePerGas: BigInt
+    maxPriorityFeePerGas: BigInt
 }
