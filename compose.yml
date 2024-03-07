@@ -21,6 +21,8 @@ services:
       # GraphQL endpoint at port 4350
       - "4350:4350"
     command: ["sqd", "serve:prod"]
+    env_file:
+      - .env
     depends_on:
       - db
   processor:
@@ -37,3 +39,5 @@ services:
     command: ["sqd", "process:eth"]
     depends_on:
       - db
+    env_file:
+      - .env
