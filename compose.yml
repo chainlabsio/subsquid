@@ -36,7 +36,7 @@ services:
     ports:
       # prometheus metrics exposed at port 3000
       - "3000:3000"
-    command: ["sqd", "process:eth"]
+    command: ["sqd", "process:prod:eth"]
     depends_on:
       - db
     env_file:
