@@ -23,6 +23,4 @@ type Transfer @entity {
     coin: Coin!
     gasUsed: BigInt!
     gasPrice: BigInt!
-    maxFeePerGas: BigInt
-    maxPriorityFeePerGas: BigInt
 }

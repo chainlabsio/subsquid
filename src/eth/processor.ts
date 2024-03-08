@@ -40,8 +40,6 @@ export const processor = new EvmBatchProcessor()
             hash: true,
             gasPrice: true,
             gasUsed: true,
-            maxFeePerGas: true,
-            maxPriorityFeePerGas: true,
         },
     })
     .addLog({

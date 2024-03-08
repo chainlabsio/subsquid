@@ -40,9 +40,6 @@ processor.run(
                         txHash: log.transaction!.hash,
                         gasUsed: log.transaction!.gasUsed,
                         gasPrice: log.transaction!.gasPrice,
-                        maxFeePerGas: log.transaction!.maxFeePerGas,
-                        maxPriorityFeePerGas:
-                            log.transaction!.maxPriorityFeePerGas,
                         txFee: ethers.formatEther(
                             log.transaction!.gasUsed * log.transaction!.gasPrice
                         ),
