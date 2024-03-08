@@ -8,6 +8,8 @@ services:
       - "5432:5432"
       # Uncomment for logging all SQL statements
       # command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
   api:
     build:
       context: .
