@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres:15
+    restart: always
     environment:
       POSTGRES_DB: squid
       POSTGRES_PASSWORD: postgres
@@ -13,6 +14,7 @@ services:
   api:
     build:
       context: .
+    restart: always
     environment:
       - DB_NAME=squid
       - DB_PORT=5432
@@ -30,6 +32,7 @@ services:
   processor:
     build:
       context: .
+    restart: always
     environment:
       - DB_NAME=squid
       - DB_PORT=5432
