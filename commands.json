@@ -49,6 +49,11 @@
                 "--multicall"
             ]
         },
+        "process:arbitrum": {
+            "description": "Load .env and start the Arbitrum squid processor",
+            "deps": ["build", "migration:apply"],
+            "cmd": ["node", "--require=dotenv/config", "lib/arbitrum/main.js"]
+        },
         "process:eth": {
             "description": "Load .env and start the ETH squid processor",
             "deps": ["build", "migration:apply"],
@@ -63,6 +68,12 @@
             "description": "Load .env and start the Polygon squid processor",
             "deps": ["build", "migration:apply"],
             "cmd": ["node", "--require=dotenv/config", "lib/polygon/main.js"]
+        },
+        "process:prod:arbitrum": {
+            "description": "Start the squid processor",
+            "deps": ["migration:apply"],
+            "cmd": ["node", "lib/arbitrum/main.js"],
+            "hidden": true
         },
         "process:prod:eth": {
             "description": "Start the squid processor",
