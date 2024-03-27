@@ -12,6 +12,9 @@ x-defaults: &defaults
     - db
   env_file:
     - .env
+  dns:
+    - "1.1.1.1"
+    - "1.0.0.1"
 
 services:
   db:
