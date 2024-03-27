@@ -51,6 +51,26 @@ services:
     profiles:
       - arbitrum
 
+  avax-processor:
+    build:
+      context: .
+    restart: always
+    environment:
+      - DB_NAME=squid
+      - DB_PORT=5432
+      - DB_HOST=db
+      - DB_PASS=postgres
+    ports:
+      # prometheus metrics exposed at port 3004
+      - "3004:3000"
+    command: ["sqd", "process:prod:avax"]
+    depends_on:
+      - db
+    env_file:
+      - .env
+    profiles:
+      - avax
+
   eth-processor:
     build:
       context: .
