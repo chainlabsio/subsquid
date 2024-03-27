@@ -41,3 +41,17 @@ sqd process:eth # Ethereum processor
 sqd process:bsc # BSC processor
 sqd serve       # GraphQL server
 ```
+
+## Production
+
+Each service has compose profiles for production. You can run them with the following commands:
+```bash
+docker compose -f compose.prod.yml --profile eth up
+docker compose -f compose.prod.yml --profile bsc up
+...
+```
+
+Or you can run all services at once:
+```bash
+docker compose -f compose.prod.yml --profile "*" up
+```
