@@ -11,6 +11,7 @@ services:
       # command: ["postgres", "-c", "log_statement=all"]
     volumes:
       - ./db-data:/var/lib/postgresql/data
+
   api:
     build:
       context: .
@@ -29,6 +30,7 @@ services:
       - .env
     depends_on:
       - db
+
   eth_processor:
     build:
       context: .
@@ -46,6 +48,9 @@ services:
       - db
     env_file:
       - .env
+    profiles:
+      - eth
+
   polygon_processor:
     build:
       context: .
@@ -63,6 +68,9 @@ services:
       - db
     env_file:
       - .env
+    profiles:
+      - polygon
+
   bsc_processor:
     build:
       context: .
@@ -80,3 +88,5 @@ services:
       - db
     env_file:
       - .env
+    profiles:
+      - bsc
