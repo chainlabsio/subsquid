@@ -6,3 +6,7 @@ npm-debug.log
 
 # OS Files
 .DS_Store
+
+# Compose Files
+docker-compose.yml
+compose.prod.yml
