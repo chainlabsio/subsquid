@@ -29,7 +29,7 @@ services:
       - .env
     depends_on:
       - db
-  processor:
+  eth_processor:
     build:
       context: .
     restart: always
@@ -42,6 +42,40 @@ services:
       # prometheus metrics exposed at port 3000
       - "3000:3000"
     command: ["sqd", "process:prod:eth"]
+    depends_on:
+      - db
+    env_file:
+      - .env
+  polygon_processor:
+    build:
+      context: .
+    restart: always
+    environment:
+      - DB_NAME=squid
+      - DB_PORT=5432
+      - DB_HOST=db
+      - DB_PASS=postgres
+    ports:
+      # prometheus metrics exposed at port 3001
+      - "3001:3000"
+    command: ["sqd", "process:prod:polygon"]
+    depends_on:
+      - db
+    env_file:
+      - .env
+  bsc_processor:
+    build:
+      context: .
+    restart: always
+    environment:
+      - DB_NAME=squid
+      - DB_PORT=5432
+      - DB_HOST=db
+      - DB_PASS=postgres
+    ports:
+      # prometheus metrics exposed at port 3002
+      - "3002:3000"
+    command: ["sqd", "process:prod:bsc"]
     depends_on:
       - db
     env_file:
