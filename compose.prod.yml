@@ -31,7 +31,7 @@ services:
     depends_on:
       - db
 
-  eth_processor:
+  eth-processor:
     build:
       context: .
     restart: always
@@ -51,7 +51,7 @@ services:
     profiles:
       - eth
 
-  polygon_processor:
+  polygon-processor:
     build:
       context: .
     restart: always
@@ -71,7 +71,7 @@ services:
     profiles:
       - polygon
 
-  bsc_processor:
+  bsc-processor:
     build:
       context: .
     restart: always
