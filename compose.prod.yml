@@ -1,3 +1,16 @@
+x-defaults: &defaults
+  image: ghcr.io/chainlabsio/subsquid:main
+  restart: always
+  environment:
+    - DB_NAME=squid
+    - DB_PORT=5432
+    - DB_HOST=db
+    - DB_PASS=postgres
+  depends_on:
+    - db
+  env_file:
+    - .env
+
 services:
   db:
     image: postgres:15
@@ -13,120 +26,53 @@ services:
       - ./db-data:/var/lib/postgresql/data
 
   api:
-    build:
-      context: .
-    restart: always
-    environment:
-      - DB_NAME=squid
-      - DB_PORT=5432
-      - DB_HOST=db
-      - DB_PASS=postgres
-      - GQL_PORT=4350
+    <<: *defaults
     ports:
       # GraphQL endpoint at port 4350
       - "4350:4350"
     command: ["sqd", "serve:prod"]
-    env_file:
-      - .env
-    depends_on:
-      - db
 
   arbitrum-processor:
-    build:
-      context: .
-    restart: always
-    environment:
-      - DB_NAME=squid
-      - DB_PORT=5432
-      - DB_HOST=db
-      - DB_PASS=postgres
+    <<: *defaults
     ports:
       # prometheus metrics exposed at port 3003
       - "3003:3000"
     command: ["sqd", "process:prod:arbitrum"]
-    depends_on:
-      - db
-    env_file:
-      - .env
     profiles:
       - arbitrum
 
   avax-processor:
-    build:
-      context: .
-    restart: always
-    environment:
-      - DB_NAME=squid
-      - DB_PORT=5432
-      - DB_HOST=db
-      - DB_PASS=postgres
+    <<: *defaults
     ports:
       # prometheus metrics exposed at port 3004
       - "3004:3000"
     command: ["sqd", "process:prod:avax"]
-    depends_on:
-      - db
-    env_file:
-      - .env
     profiles:
       - avax
 
   eth-processor:
-    build:
-      context: .
-    restart: always
-    environment:
-      - DB_NAME=squid
-      - DB_PORT=5432
-      - DB_HOST=db
-      - DB_PASS=postgres
+    <<: *defaults
     ports:
       # prometheus metrics exposed at port 3000
       - "3000:3000"
     command: ["sqd", "process:prod:eth"]
-    depends_on:
-      - db
-    env_file:
-      - .env
     profiles:
       - eth
 
   polygon-processor:
-    build:
-      context: .
-    restart: always
-    environment:
-      - DB_NAME=squid
-      - DB_PORT=5432
-      - DB_HOST=db
-      - DB_PASS=postgres
+    <<: *defaults
     ports:
       # prometheus metrics exposed at port 3001
       - "3001:3000"
     command: ["sqd", "process:prod:polygon"]
-    depends_on:
-      - db
-    env_file:
-      - .env
     profiles:
       - polygon
 
   bsc-processor:
-    build:
-      context: .
-    restart: always
-    environment:
-      - DB_NAME=squid
-      - DB_PORT=5432
-      - DB_HOST=db
-      - DB_PASS=postgres
+    <<: *defaults
     ports:
       # prometheus metrics exposed at port 3002
       - "3002:3000"
     command: ["sqd", "process:prod:bsc"]
-    depends_on:
-      - db
-    env_file:
-      - .env
     profiles:
       - bsc
