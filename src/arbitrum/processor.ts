@@ -12,10 +12,10 @@ import { Store } from "@subsquid/typeorm-store";
 import * as erc20abi from "../abi/erc20";
 
 export const ARBITRUM_USDC_ADDRESS =
-    "0x7EA2be2df7BA6E54B1A9C70676f668455E329d29".toLowerCase();
+    "0xaf88d065e77c8cC2239327C5EDb3A432268e5831".toLowerCase();
 
 export const ARBITRUM_USDT_ADDRESS =
-    "0xdAC17F958D2ee523a2206206994597C13D831ec7".toLowerCase();
+    "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9".toLowerCase();
 
 export const processor = new EvmBatchProcessor()
     // Lookup archive by the network name in Subsquid registry
