@@ -69,7 +69,7 @@
             "deps": ["build", "migration:apply"],
             "cmd": ["node", "--require=dotenv/config", "lib/bsc/main.js"]
         },
-        "process:polygon": {
+        "process:matic": {
             "description": "Load .env and start the Polygon squid processor",
             "deps": ["build", "migration:apply"],
             "cmd": ["node", "--require=dotenv/config", "lib/matic/main.js"]
@@ -96,7 +96,7 @@
             "cmd": ["node", "lib/bsc/main.js"],
             "hidden": true
         },
-        "process:prod:polygon": {
+        "process:prod:matic": {
             "description": "Start the squid processor",
             "cmd": ["node", "lib/matic/main.js"],
             "hidden": true
