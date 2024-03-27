@@ -9,6 +9,9 @@ enum Network {
     Binance
     Polygon
     Arbitrum
+    Avalanche
+    Base
+    Optimism
 }
 
 type Transfer @entity {

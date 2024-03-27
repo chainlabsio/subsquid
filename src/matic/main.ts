@@ -7,7 +7,7 @@ import { ethers } from "ethers";
 processor.run(
     new TypeormDatabase({
         supportHotBlocks: true,
-        stateSchema: "polygon_processor",
+        stateSchema: "matic_processor",
     }),
     async (ctx) => {
         const transfers: Transfer[] = [];

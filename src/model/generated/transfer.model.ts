@@ -12,7 +12,7 @@ export class Transfer {
     @PrimaryColumn_()
     id!: string
 
-    @Column_("varchar", {length: 8, nullable: false})
+    @Column_("varchar", {length: 9, nullable: false})
     network!: Network
 
     @Index_()

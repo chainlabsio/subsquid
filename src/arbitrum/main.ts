@@ -7,7 +7,7 @@ import { ethers } from "ethers";
 processor.run(
     new TypeormDatabase({
         supportHotBlocks: true,
-        stateSchema: "eth_processor",
+        stateSchema: "arbitrum_processor",
     }),
     async (ctx) => {
         const transfers: Transfer[] = [];
@@ -28,7 +28,7 @@ processor.run(
                 transfers.push(
                     new Transfer({
                         id: log.id,
-                        network: Network.Ethereum,
+                        network: Network.Arbitrum,
                         block: c.header.height,
                         timestamp: new Date(c.header.timestamp),
                         from,

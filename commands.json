@@ -72,7 +72,7 @@
         "process:polygon": {
             "description": "Load .env and start the Polygon squid processor",
             "deps": ["build", "migration:apply"],
-            "cmd": ["node", "--require=dotenv/config", "lib/polygon/main.js"]
+            "cmd": ["node", "--require=dotenv/config", "lib/matic/main.js"]
         },
         "process:prod:arbitrum": {
             "description": "Start the squid processor",
@@ -98,7 +98,7 @@
         },
         "process:prod:polygon": {
             "description": "Start the squid processor",
-            "cmd": ["node", "lib/polygon/main.js"],
+            "cmd": ["node", "lib/matic/main.js"],
             "hidden": true
         },
         "serve": {
