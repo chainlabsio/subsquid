@@ -1,7 +1,7 @@
 x-defaults: &defaults
-  # image: ghcr.io/chainlabsio/subsquid:main
-  build:
-    context: .
+  image: ghcr.io/chainlabsio/subsquid:main
+  # build:
+  #   context: .
   restart: always
   environment:
     - DB_NAME=squid
