@@ -55,6 +55,15 @@ services:
     profiles:
       - avax
 
+  base-processor:
+    <<: *defaults
+    ports:
+      # prometheus metrics exposed at port 3005
+      - "3005:3000"
+    command: ["sqd", "process:prod:base"]
+    profiles:
+      - base
+
   eth-processor:
     <<: *defaults
     ports:

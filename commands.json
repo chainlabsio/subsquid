@@ -64,6 +64,11 @@
             "deps": ["build", "migration:apply"],
             "cmd": ["node", "--require=dotenv/config", "lib/eth/main.js"]
         },
+        "process:base": {
+            "description": "Load .env and start the base squid processor",
+            "deps": ["build", "migration:apply"],
+            "cmd": ["node", "--require=dotenv/config", "lib/base/main.js"]
+        },
         "process:bsc": {
             "description": "Load .env and start the BSC squid processor",
             "deps": ["build", "migration:apply"],
@@ -82,7 +87,14 @@
         },
         "process:prod:avax": {
             "description": "Start the squid processor",
+            "deps": ["migration:apply"],
             "cmd": ["node", "lib/avax/main.js"],
+            "hidden": true
+        },
+        "process:prod:base": {
+            "description": "Start the squid processor",
+            "deps": ["migration:apply"],
+            "cmd": ["node", "lib/base/main.js"],
             "hidden": true
         },
         "process:prod:eth": {
@@ -93,11 +105,13 @@
         },
         "process:prod:bsc": {
             "description": "Start the squid processor",
+            "deps": ["migration:apply"],
             "cmd": ["node", "lib/bsc/main.js"],
             "hidden": true
         },
         "process:prod:matic": {
             "description": "Start the squid processor",
+            "deps": ["migration:apply"],
             "cmd": ["node", "lib/matic/main.js"],
             "hidden": true
         },
