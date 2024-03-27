@@ -64,7 +64,7 @@ services:
     profiles:
       - eth
 
-  polygon-processor:
+  matic-processor:
     <<: *defaults
     ports:
       # prometheus metrics exposed at port 3001
