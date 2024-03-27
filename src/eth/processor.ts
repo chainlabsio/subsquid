@@ -23,7 +23,7 @@ export const ETH_SHIB_ADDRESS =
 export const processor = new EvmBatchProcessor()
     // Lookup archive by the network name in Subsquid registry
     // See https://docs.subsquid.io/evm-indexing/supported-networks/
-    .setGateway("https://v2.archive.subsquid.io/network/ethereum-mainnet")
+    .setGateway(lookupArchive("eth-mainnet"))
     // Chain RPC endpoint is required for
     //  - indexing unfinalized blocks https://docs.subsquid.io/basics/unfinalized-blocks/
     //  - querying the contract state https://docs.subsquid.io/evm-indexing/query-state/
